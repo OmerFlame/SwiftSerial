@@ -98,7 +98,7 @@ public enum BaudRate {
         }
     }
 }
-#elseif os(OSX)
+#elseif os(OSX) || targetEnvironment(macCatalyst)
 public enum BaudRate {
     case baud0
     case baud50
