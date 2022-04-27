@@ -249,7 +249,7 @@ public class SerialPort {
 
     #if os(Linux)
         fileDescriptor = open(path, readWriteParam | O_NOCTTY)
-    #elseif os(OSX)
+    #elseif os(OSX) || targetEnvironment(macCatalyst)
         fileDescriptor = open(path, readWriteParam | O_NOCTTY | O_EXLOCK)
     #endif
 
@@ -309,7 +309,7 @@ public class SerialPort {
         } else {
             settings.c_cflag &= ~tcflag_t(CRTSCTS)
         }
-    #elseif os(OSX)
+    #elseif os(OSX) || targetEnvironment(macCatalyst)
         if useHardwareFlowControl {
             settings.c_cflag |= tcflag_t(CRTS_IFLOW)
             settings.c_cflag |= tcflag_t(CCTS_OFLOW)
